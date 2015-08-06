@@ -1,5 +1,9 @@
 #include <stdio.h>
 
+<?R for (i in 1:10) { ?>
+// <?%d i ?> is the number of the day
+<?R } ?>
+
 
 int main( void ) {
     cudaDeviceProp  prop;
