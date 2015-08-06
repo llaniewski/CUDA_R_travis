@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+
+int main( void ) {
+    cudaDeviceProp  prop;
+    int count;
+    cudaError_t err;
+    err = cudaGetDeviceCount( &count );
+    if (err != cudaSuccess) {
+        printf( "Failed to get device count: %s\n", cudaGetErrorString( err ));
+        exit( EXIT_FAILURE );
+    }
+    for (int i=0; i< count; i++) {
+        err = cudaGetDeviceProperties( &prop, i );
+	if (err != cudaSuccess) {
+            printf( "Failed to get device properties: %s\n", cudaGetErrorString( err ));
+            exit( EXIT_FAILURE );
+        }
+        printf( "----- GPU %d -----\n", i );
+        printf( "Name:  %s\n", prop.name );
+        printf( "Compute capability:  %d.%d\n", prop.major, prop.minor );
+        printf( "Clock rate:  %d\n", prop.clockRate );
+        printf( "Total global mem:  %ld\n", prop.totalGlobalMem );
+        printf( "Total constant Mem:  %ld\n", prop.totalConstMem );
+        printf( "\n" );
+    }
+}
