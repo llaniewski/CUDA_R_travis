@@ -15,6 +15,7 @@ before_install:
 
 install:
     - nvcc --version
+    - java -version
 
 script:
     - make
