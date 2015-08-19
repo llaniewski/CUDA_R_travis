@@ -8,6 +8,7 @@ env:
 before_install:
 - sudo ./install.sh cuda $CUDA
 - sudo ./install.sh r
+- sudo apt-get install time
 - ./install.sh rdep
 - export CUDA_HOME=/usr/local/cuda-${CUDA%%-*}
 - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
