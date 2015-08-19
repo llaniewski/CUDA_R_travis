@@ -1,25 +1,25 @@
 language: c
-
 env:
   matrix:
-    - CUDA=6.5-14
-    - CUDA=7.0-28
-
+  - CUDA=6.5-14
+  - CUDA=7.0-28
+  global:
+    secure: rL1Jm4/Wv8sjbExAO+Q++91wht8cU2LftnhZUYbVTpugAAF21APt/kURPIfndjWTqXnxuDVi7Lmphu8fLGA817eQNIIKepTOwBnqBC6MnG8hJNUAyoXjNEG034VrQvv0XvQnzQn3YO8zVeKOLtUo/pP00qwNVGP0Gdxd0lTEbXtQLdzA5MivDtIkRVxaepmA6erGhloVxJNYHjnKZx0aWmNH5M0VK0MsJH4XoxZiOlYt9EC2RvUQe8iZXR7dKXJqbal8ANF7jtwwpBlkVRZ3C4JfSt48AiQLQqsxHOI+n7M0vjIifBW+17RFC+OUlOj0ZDOWLrm0fzq7l2GDOiUx6yCjXCS8nyUFHwJQQxuLmr1kQLkcZ5CbPisNUXKux8uxlg6cxmUYyHvo6CujOb3F4DvFAH9/LQbbszffnBj6NMBP8ZMoBJGatr0rSy9sUXyKR9Z7NFmE896LFIKY0T5vtYVwg4e2HCuGc9mdBou8SbGS7cTBJkmN8oWb+NFjsstI1c0XZWxleroov8AjVX6/XHOzla94hAsMPpash5r6OeeMUIFGP7dAaaDV/OF/liWJadRsQave/6e1clPqzl/LSH+LHVoFYMQ5YZTnQcqcg723i+wqlNMsauur70vXxXq9PE6d0+doq0ynTdSBFzOodIVoQCvBA1h8ZFUO0/lSE/0=
 before_install:
-    - sudo ./install.sh cuda $CUDA
-    - sudo ./install.sh r
-    - ./install.sh rdep
-    - export CUDA_HOME=/usr/local/cuda-${CUDA%%-*}
-    - export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
-    - export PATH=${CUDA_HOME}/bin:${PATH}
-
+- sudo ./install.sh cuda $CUDA
+- sudo ./install.sh r
+- ./install.sh rdep
+- export CUDA_HOME=/usr/local/cuda-${CUDA%%-*}
+- export LD_LIBRARY_PATH=${CUDA_HOME}/lib64:${LD_LIBRARY_PATH}
+- export PATH=${CUDA_HOME}/bin:${PATH}
 install:
-    - nvcc --version
-    - java -version
-
+- nvcc --version
+- java -version
+- which time
+- which gem
+- echo $PATH
 script:
-    - make
-
+- make
 after_failure:
-    - dmesg
-    - ls -R /usr/local/cuda*
+- dmesg
+- ls -R /usr/local/cuda*
